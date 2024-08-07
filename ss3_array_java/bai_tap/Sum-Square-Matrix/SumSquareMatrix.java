@@ -25,21 +25,24 @@ public class SumSquareMatrix {
             }
             System.out.println();
         }
+
         while (true) {
-            System.out.println("Enter the number of the row + collum you want to sum: ");
+            System.out.println("Enter the number of the row + column you want to sum: ");
             int sumLine = sc.nextInt();
             if (sumLine > size || sumLine < 1) {
                 System.out.println("Invalid number");
             } else {
                 int sum = 0;
-                for (int i = 0; i < matrixArr[sumLine].length; i++) {
+
+                for (int i = 0; i < size; i++) {
                     sum += matrixArr[sumLine - 1][i];
                 }
-                for (int i = 0; i < matrixArr[sumLine].length; i++) {
+                for (int i = 0; i < size; i++) {
                     sum += matrixArr[i][sumLine - 1];
                 }
+                sum -= matrixArr[sumLine - 1][sumLine - 1];
 
-                System.out.println("The sum of row " + sumLine + ", collum " + sumLine + " is: " + sum);
+                System.out.println("The sum of row " + sumLine + ", column " + sumLine + " is: " + sum);
                 break;
             }
         }
