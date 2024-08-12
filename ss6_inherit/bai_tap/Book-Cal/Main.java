@@ -9,8 +9,8 @@ public class Main {
         FictionBook book6 = new FictionBook("b6", "OMG", 50000.0, "Idiot", "Vien tuong 3");
 
         double sumPrice = 0;
-        double javaBookCount = 0;
-        double vienTuongCount = 0;
+        int javaBookCount = 0;
+        int vienTuongCount = 0;
         int cheap = 0;
     Book [] books = {book1, book2, book3, book4, book5, book6};
         for (Book book : books) {
