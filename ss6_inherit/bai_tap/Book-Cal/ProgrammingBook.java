@@ -26,5 +26,4 @@ public class ProgrammingBook extends Book {
     public double getPrice() {
         return super.getPrice() * 0.95;
     }
-
 }

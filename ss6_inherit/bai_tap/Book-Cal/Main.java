@@ -13,31 +13,66 @@ public class Main {
         int vienTuongCount = 0;
         int cheap = 0;
     Book [] books = {book1, book2, book3, book4, book5, book6};
-        for (Book book : books) {
-            sumPrice += book.getPrice();
-            if (book instanceof ProgrammingBook) {
-                ProgrammingBook programmingBook = (ProgrammingBook) book;
-                if (programmingBook.getLanguage().equals("Java")) {
-                    javaBookCount++;
-                }
-            }
-            if (book instanceof FictionBook) {
-                FictionBook fictionBook = (FictionBook) book;
-                if (fictionBook.getCategory().equals("Vien tuong 1")) {
-                    vienTuongCount++;
-                }
-            }
-            if (book instanceof FictionBook) {
-                FictionBook fictionBook = (FictionBook) book;
-                if (fictionBook.getPrice() < 100000) {
-                    cheap++;
-                }
-            }
-        }
+
+
+        sumPrice = getSumPrice(books, sumPrice);
+
+        String keyword1 = "Java";
+        javaBookCount = getJavaBookCount(books, javaBookCount, keyword1);
+
+        String keyword2 = "Vien tuong 1";
+
+        vienTuongCount = getVienTuongCount(books, vienTuongCount, keyword2);
+
+        cheap = getCheap(books, cheap);
+
+
         System.out.println("Tong so tien cua 6 sach la: " + sumPrice);
         System.out.println("Tong so sach Java la: " + javaBookCount);
         System.out.println("Tong so sach Vien tuong 1 la: " + vienTuongCount);
         System.out.println("Tong so sach Fiction co gia < 100000 la: " + cheap);
 
+    }
+
+    private static int getCheap(Book[] books, int cheap) {
+        for (int i = 0; i < books.length; i++ ) {
+            if (books[i] instanceof FictionBook) {
+                if (books[i].getPrice() < 100000) {
+                    cheap++;
+                }
+            }
+        }
+        return cheap;
+    }
+
+    private static int getVienTuongCount(Book[] books, int vienTuongCount, String keyword2) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] instanceof FictionBook) {
+                FictionBook fictionBook = (FictionBook) books[i];
+                if (keyword2.equals(fictionBook.getCategory())) {
+                    vienTuongCount++;
+                }
+            }
+        }
+        return vienTuongCount;
+    }
+
+    private static int getJavaBookCount(Book[] books, int javaBookCount, String keyword) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] instanceof ProgrammingBook) {
+                ProgrammingBook programmingBook = (ProgrammingBook) books[i];
+                if (keyword.equals(programmingBook.getLanguage())) {
+                    javaBookCount++;
+                }
+            }
+        }
+        return javaBookCount;
+    }
+
+    private static double getSumPrice(Book[] books, double sumPrice) {
+        for (int i = 0; i < books.length; i++) {
+            sumPrice += books[i].getPrice();
+        }
+        return sumPrice;
     }
 }
