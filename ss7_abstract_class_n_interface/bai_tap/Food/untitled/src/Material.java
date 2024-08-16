@@ -1,14 +1,15 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public abstract class Material implements Discount, Comparable<Material> {
     private String id;
     private String name;
-    private LocalDate manufacturingDate ;
+    private LocalDate manufacturingDate;
     private double cost;
 
     @Override
     public int compareTo(Material o) {
-        return this.id.compareTo(o.id);
+        return Double.compare(this.cost, o.cost);
     }
 
     public Material() {
@@ -58,7 +59,7 @@ public abstract class Material implements Discount, Comparable<Material> {
         this.id = id;
     }
 
-    public abstract double getAmount(int cost, double quantity);
+    public abstract double getAmount();
 
     public abstract LocalDate getExpiryDate();
 
@@ -67,13 +68,15 @@ public abstract class Material implements Discount, Comparable<Material> {
         return getCost();
     }
 
+    DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
     @Override
     public String toString() {
         return "Material{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", manufacturingDate=" + manufacturingDate +
-                ", cost=" + cost +
+                ", cost=" + decimalFormat.format(cost) +
                 '}';
     }
 }

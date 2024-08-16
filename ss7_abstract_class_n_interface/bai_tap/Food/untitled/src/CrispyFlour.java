@@ -17,13 +17,31 @@ public class CrispyFlour extends Material {
     }
 
     @Override
-    public double getAmount (int cost, double quantity) {
-        return (double) quantity * cost;
+    public double getAmount() {
+        return (double) getQuantity() * getCost();
     }
 
     @Override
-    public LocalDate getExpiryDate () {
+    public LocalDate getExpiryDate() {
         return getManufacturingDate().plusYears(1);
+    }
+
+    @Override
+    public double getRealMoney() {
+        LocalDate todayDate = LocalDate.now();
+        if (todayDate.isBefore(getExpiryDate())
+                && (todayDate.isAfter(getExpiryDate().minusDays(5)))
+                || todayDate.isEqual(getExpiryDate().minusDays(5))) {
+            System.out.println("Discount 30%");
+            return getAmount() * 0.8;
+        } else if (todayDate.isBefore(getExpiryDate())
+                && (todayDate.isEqual(getManufacturingDate()))
+                || todayDate.isAfter(getManufacturingDate())) {
+            return getAmount() * 0.95;
+        } else {
+            System.out.println("Invalid data");
+        }
+        return 0;
     }
 
 
