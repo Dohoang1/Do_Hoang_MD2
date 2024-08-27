@@ -139,21 +139,14 @@ public class MobileManagement {
                         String line;
                         while ((line = br.readLine()) != null) {
                             String[] record = line.split(",");
-                            System.out.println("ID: " + record[0] + ", Tên: " + record[1] + ", Giá: " + record[2] +
-                                    ", Số lượng: " + record[3] + ", Nhà sản xuất: " + record[4] +
-                                    ", " + record[5] +
-                                    ", " + record[6]);
+                            System.out.println(record[0] + ", " + record[1] + ", " + record[2] + ", " +
+                                    record[3] + ", " + record[4] + ", " + record[5] + ", " + record[6] + ".");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     break;
                 case 4:
-
-
-
-
-
 
 
                     break;
@@ -175,24 +168,24 @@ public class MobileManagement {
             if (mobile instanceof OfficialMobile) {
                 OfficialMobile officialMobile = (OfficialMobile) mobile;
                 line = String.join(",",
-                        officialMobile.getId(),
-                        officialMobile.getName(),
-                        String.valueOf(officialMobile.getPrice()),
-                        String.valueOf(officialMobile.getStock()),
-                        officialMobile.getBrand(),
-                        officialMobile.getWarrantyPeriod(),
-                        officialMobile.getWarrantyScope()
+                        "ID: " + officialMobile.getId(),
+                        "Tên máy: " + officialMobile.getName(),
+                        "Giá bán: " + String.valueOf(officialMobile.getPrice()),
+                        "Tồn kho: " + String.valueOf(officialMobile.getStock()),
+                        "Thương hiệu: " + officialMobile.getBrand(),
+                        "Bảo hành: " + officialMobile.getWarrantyPeriod(),
+                        "Phạm vi bảo hành: " + officialMobile.getWarrantyScope()
                 );
             } else if (mobile instanceof ImportedMobile) {
                 ImportedMobile importedMobile = (ImportedMobile) mobile;
                 line = String.join(",",
-                        importedMobile.getId(),
-                        importedMobile.getName(),
-                        String.valueOf(importedMobile.getPrice()),
-                        String.valueOf(importedMobile.getStock()),
-                        importedMobile.getBrand(),
-                        importedMobile.getImportCountry(),
-                        importedMobile.getStatus()
+                        "ID: " + importedMobile.getId(),
+                        "Tên máy: " + importedMobile.getName(),
+                        "Giá bán: " + String.valueOf(importedMobile.getPrice()),
+                        "Tồn kho: " + String.valueOf(importedMobile.getStock()),
+                        "Thương hiệu: " + importedMobile.getBrand(),
+                        "Xuất xứ xách tay: " + importedMobile.getImportCountry(),
+                        "Tình trạng: " + importedMobile.getStatus()
                 );
             } else {
                 throw new IllegalArgumentException("Unknown mobile type");
