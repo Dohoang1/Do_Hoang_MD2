@@ -63,7 +63,6 @@ public class Main {
     }
 
     private static void totalExpense(DecimalFormat currencyFormat) {
-        System.out.println("Get Total Income After All Spending");
         try {
             if (electricBill == null || taxiExpenses == null || netSalary == null) {
                 throw new IllegalStateException("Requested Data Not Entered, Please Input 1, 2, 3 First!");
